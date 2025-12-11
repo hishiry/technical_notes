@@ -1,0 +1,11 @@
+1. github "Developer Settings" 生成 access token
+2. jenkins "credentials" "Secret text" 填入刚生成的token
+3.
+
+
+
+
+
+
+
+
