@@ -1,0 +1,10 @@
+# chromedriver 下载地址
+https://chromedriver.storage.googleapis.com/index.html
+https://googlechromelabs.github.io/chrome-for-testing/#stable
+# 查看chrome 版本
+chrome://version/
+# put it to chrome install path
+C:\Program Files\Google\Chrome\Application
+
+
+
