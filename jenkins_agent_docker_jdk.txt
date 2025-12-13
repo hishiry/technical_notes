@@ -1,0 +1,38 @@
+1. docker pull maven:4.0.0-rc-5-eclipse-temurin-17
+2. Dockerfile
+FROM maven:4.0.0-rc-5-eclipse-temurin-17
+
+WORKDIR /root/jenkins
+ADD *.jar .
+CMD java -jar agent.jar -url http://host.docker.internal:8080/ -secret 8dc9329d5b1663b6231efd1ee127d4b4dadb3e32806de2852f5047b8cdc74564 -name "maven3_jdk17" -webSocket -workDir "/var/jenkins_homework"
+
+3. docker build -t node:maven3-jdk17 .
+4. jenkins 配置
+  1) ssh-key参考 jenkin_github_config.txt && ssh-key-1-config.txt
+  2) Job配置
+     -1. GitHub 项目
+       git@github.com:hishiry/for_jenkins_agent_java.git/
+     -2. GitLab Connection
+       gitlab_apitoken
+     -3. Restrict where this project can be run
+       node
+     -4. Git
+       Repository URL
+         https://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@github.com/hishiry/for_jenkins_agent_java.git
+       Branch Specifier (blank for 'any')
+         */main
+     -5. Environment
+       Use secret text(s) or file(s) -> Credentials -> Specific credentials
+         github_token
+     -6. Build Steps
+       Execute shell
+          java --version
+          mvn --version
+          pwd
+          mvn clean test
+     -7. Post-build Actions
+       Publish JUnit test result report -> 测试报告（XML）
+         target/surefire-reports/*.xml
+
+
+
