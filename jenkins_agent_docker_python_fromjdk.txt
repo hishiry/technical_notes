@@ -21,22 +21,35 @@ ENTRYPOINT ["/root/jenkins/entrypoint.sh"]
 
 4.docker build
   docker build -f Dockerfile_tmp -t java_tmp .
+
 5.docker run
   example :
     # $1 http://host.docker.internal:8080/
     # $2 61088ec857c154efa09583765b03ad2b0dcc422bc8addc3e120d956dff6b009f
     # $3 java_node
     # docker run --rm -it java_tmp http://host.docker.internal:8080/ ac83f8f1436fd08874856d804cd6dc9ae11cfa48a1fd0ad34cce88687b74a937 python_from_java_node
+
 6.Build Steps -> Execute shell -> Command
-    which python3
-    python3 --version
-    python3 -m venv venv
-    pwd
-    . ./venv/bin/activate
-    pip install -r requirements.txt
-    pytest . --junitxml junit.xml ||:
+    -1. python
+        which python3
+        python3 --version
+        python3 -m venv venv
+        pwd
+        . ./venv/bin/activate
+        pip install -r requirements.txt
+        pytest . --junitxml junit.xml ||:
+    -2. java
+        java --version
+        # apt-get install -y maven
+        mvn --version
+        pwd
+        mvn clean test
+
 7.Post-build Actions -> Publish JUnit test result report -> 测试报告（XML）
-  junit.xml
+  -1. python
+    junit.xml
+  -2. java
+    target/surefire-reports/*.xml
+
 8.备注
-  -1. java : mvn clean test
     jenkins带动较慢，可服务器直接执行命令

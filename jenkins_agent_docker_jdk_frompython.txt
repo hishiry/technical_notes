@@ -1,0 +1,52 @@
+1.entrypoin.sh
+#!/bin/bash
+
+echo $@
+echo java -jar agent.jar -url $1 -secret $2 -name $3 -webSocket -workDir "/var/jenkins_homework"
+java -jar agent.jar -url $1 -secret $2 -name $3 -webSocket -workDir "/var/jenkins_homework"
+
+2.Dockerfile_java_agent_fromPython
+FROM  python:3.14.2
+WORKDIR /root/jenkins
+COPY *.jar *.sh ./
+# COPY debian.sources /etc/apt/sources.list
+RUN apt-get update
+RUN apt-get install -y default-jdk
+
+ENTRYPOINT ["/root/jenkins/entrypoint.sh"]
+# https://developer.aliyun.com/article/765348
+
+4.docker build
+  docker build -f Dockerfile_java_agent_fromPython -t java_from_python .
+
+5.docker run
+  example :
+    # $1 http://host.docker.internal:8080/
+    # $2 ada99a315db6084c51413da2bb6f00a2a3bd232f54b2827c27cdd5db358e6ec6
+    # $3 java_from_python_node
+    # docker run --rm -it java_from_python http://host.docker.internal:8080/ ada99a315db6084c51413da2bb6f00a2a3bd232f54b2827c27cdd5db358e6ec6 java_from_python_node
+
+6.Build Steps -> Execute shell -> Command
+    -1. python
+        which python3
+        python3 --version
+        python3 -m venv venv
+        pwd
+        . ./venv/bin/activate
+        pip install -r requirements.txt
+        pytest . --junitxml junit.xml ||:
+    -2. java
+        java --version
+        apt-get install -y maven
+        mvn --version
+        pwd
+        mvn clean test
+
+7.Post-build Actions -> Publish JUnit test result report -> 测试报告（XML）
+  -1. python
+    junit.xml
+  -2. java
+    target/surefire-reports/*.xml
+
+8.备注
+    jenkins带动较慢，可服务器直接执行命令
