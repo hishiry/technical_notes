@@ -1,0 +1,15 @@
+1. 安装jenkins插件
+    GitLab Plugin
+    Git Plugin
+    Generic Webhook Trigger Plugin
+2. jenkins job configure
+    -1). Triggers -> Generic Webhook Trigger -> Token 如 java_test_webhook
+3. gitlab 设置 Webhook
+    -1). URL
+        如: http://host.docker.internal:8080/generic-webhook-trigger/invoke?token=java_test_webhook
+    -2). Trigger -> Push events -> Regular expression
+        如: (dev/main)
+    -3). save后Test
+        Push events
+
+3. 需以Admin管理员身份登录 设置"Allow requests to the local network from web hooks and services"

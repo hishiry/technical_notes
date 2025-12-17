@@ -1,14 +1,28 @@
 1.jenkins安装 git、gitlab插件
+    -1). GitLab Plugin
+    -2). Publish Over SSH
+    -3). GitLab Authentication
+    等
+
 2.ssh-key
   1) jenkins credentials 中添加 “SSH Username with private key”
     “Private Key” 添加本地ssh-key 私钥
   2) jenkins job 中 git
     Repository URL 填入git项目ssh clone地址
     Credentials 选择刚添加的 credentials
+
 3.api token
   1) gitlab中生成api token
   2) jenkins credentials 中添加 "GitLab API token"
   3) jenkins config system 中配置 "GitLab" , Credentials 选择刚添加的 API token
+
+4. Manage Jenkins Security -> Git Host Key Verification Configuration -> Host Key Verification Strategy
+    Accept first connection
+
+5. (可选) Tools 配置 git
+    Git installations -> Path to Git executable
+        选择对应run节点git执行路径
+
 
 参考地址： https://www.cnblogs.com/linagcheng/p/17402174.html
 
