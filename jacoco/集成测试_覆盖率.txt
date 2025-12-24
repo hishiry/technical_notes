@@ -1,0 +1,31 @@
+1. 被测项目构建jar包
+    -1) 如 mvn clean verify -Dmaven.test.skip=false
+    -2) 如 sh mvnw clean test
+           sh mvnw package
+    -3) jacoco 目录：target/site/jacoco/
+2. 创建结果收集目录
+    mkdir jacoco_result_2025_12_21
+
+3. output=file
+    export JACOCO_HOME="F:/jacoco-0.8.14"
+    echo $JACOCO_HOME
+    export PETCLINIC_HOME="F:/github/spring-petclinic"
+    echo $PETCLINIC_HOME
+
+    java -javaagent:$JACOCO_HOME/lib/jacocoagent.jar=output=file -jar $PETCLINIC_HOME/target/*.jar
+    java -jar $JACOCO_HOME/lib/jacococli.jar report jacoco.exec --csv 2.csv --html 2 --xml 2.xml --classfiles $PETCLINIC_HOME/target/classes --sourcefiles $PETCLINIC_HOME/src/main/java
+
+4. output=tcpserver
+    export JACOCO_HOME="F:/jacoco-0.8.14"
+    echo $JACOCO_HOME
+    export PETCLINIC_HOME="F:/github/spring-petclinic"
+    echo $PETCLINIC_HOME
+
+    java -javaagent:$JACOCO_HOME/lib/jacocoagent.jar=output=tcpserver -jar $PETCLINIC_HOME/target/*.jar
+    java -jar $JACOCO_HOME/lib/jacococli.jar dump --destfile 3.exec
+    java -jar $JACOCO_HOME/lib/jacococli.jar report 3.exec --csv 3.csv --html 3 --xml 3.xml --classfiles $PETCLINIC_HOME/target/classes --sourcefiles $PETCLINIC_HOME/src/main/java
+
+5. netstat -p tcp -an  | grep 6300
+
+
+

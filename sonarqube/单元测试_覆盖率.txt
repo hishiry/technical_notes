@@ -1,0 +1,14 @@
+1.docker run -d --name sonarqube_temp  -p 9000:9000 -p 9092:9092   sonarqube
+2.sonarqube 密码默认 admin admin
+3.
+    sonar-sanner -version
+    which sonar-scanner
+4.访问 http://127.0.0.1:9000/
+5.创建项目 生成mvn命令 如
+    mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+      -Dsonar.projectKey=demo \
+      -Dsonar.projectName='demo' \
+      -Dsonar.host.url=http://127.0.0.1:9000 \
+      -Dsonar.token=sqp_27ad2a1d451d17ccb0beba6998ae5e5e45f795dd
+
+6.根据界面提示 修改 Maintainability、Coverage 等信息
