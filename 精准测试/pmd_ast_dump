@@ -1,0 +1,4 @@
+1. 语法术 pmd
+    pmd ast-dump -P renderCommonAttributes=true --file "F:\github\spring-petclinic\src\main\java\org\springframework\samples\petclinic\owner\OwnerController.java" | clip
+2. 字节码 asm
+
