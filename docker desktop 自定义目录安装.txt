@@ -1,0 +1,6 @@
+# 参考地址： https://zhuanlan.zhihu.com/p/686882945
+
+1. CMD:
+    start /w "" "Docker Desktop Installer.exe"  install --installation-dir=F:\DockerDesktop
+2. setting --> resource --> wsl 选择目录
+
