@@ -15,6 +15,17 @@
     }
   },
   "experimental": false,
+    "registry-mirrors": [
+        "https://mirror.ccs.tencentyun.com",
+        "https://registry.docker-cn.com",
+        "https://docker.mirrors.ustc.edu.cn",
+        "https://hub-mirror.c.163.com",
+        "http://docker.1ms.run"
+  ]
+}
+
+
+
   "registry-mirrors": [
     "http://hub-mirror.c.163.com",
     "http://mirrors.ustc.edu.cn/",
