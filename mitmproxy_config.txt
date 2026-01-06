@@ -1,0 +1,19 @@
+
+1. install  
+    brew install --cask mitmproxy
+    参考自： https://docs.mitmproxy.org/stable/overview/installation/ 
+
+2. wifi 设置
+    代理 http、https两个 分别配置服务器和端口 127.0.0.1 8888
+
+3. chrome 设置
+    安装插件 Proxy switchyOmega && 配置服务器和端口 localhost 8888  
+
+4.run
+    mitmweb -p 8888
+
+4. 下载证书
+    https://mitm.it/
+
+  
+
