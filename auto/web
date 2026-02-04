@@ -1,0 +1,20 @@
+一、browser-use 
+    https://github.com/browser-use/browser-use
+    https://browser-use.com/
+
+二、playwright 
+    1、 启动 playwright 
+        使用supergateway 保留session  : 将stdio 协议换成sse协议
+        npx -y supergateway --sse --stdio "npx @playwright/mcp@latest"  --port 8931
+    2、 配置 playwright mcp 
+        dify 工具 mcp中 添加 playwright mcp 
+            http://host.docker.internal:8931/sse
+            playwright_mcp
+            playwright_mcp
+    3、创建工作流 添加agent节点 引入 playwright 
+        工具 mcp 选择刚添加的playwright mcp 
+    4、运行
+        打开ceshiren.com 进入搜索 进入高级搜索 搜索python 打开第一条搜索结果的链接
+        打开百度 搜索霍格沃滋测试开发学社
+
+    

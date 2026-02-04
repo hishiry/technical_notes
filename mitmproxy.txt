@@ -1,0 +1,15 @@
+1. mitmweb
+    http://127.0.0.1:8081
+
+2. mitmproxy
+
+3. mitmproxy && dify 配置
+1）mitmweb -p 8003 --web-port 9004 -m reverse:http://127.0.0.1:11434
+    或
+   mitmweb -p 8003 --web-port 9004 -m reverse:http://本地ip:11434
+2）模型添加
+   baseurl: http://host.docker.internal:8003
+    或
+   baseurl: http://本地ip:8003
+
+
